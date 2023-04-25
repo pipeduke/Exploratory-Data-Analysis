@@ -54,7 +54,8 @@ query3.to_csv("FilesCsv/query3.csv", index=False)
 # Create dataframe
 df_age_avg = df_final[['birthdate','average_feedback']]
 # Format string to date
-df_age_avg['birthdate'] = pd.to_datetime(df_age_avg['birthdate'], format='%Y/%m/%d')
+df_age_avg['birthdate'] = pd.to_datetime(df_age_avg['birthdate'], format='mixed')
+pd.options.mode.chained_assignment = None
 # Add column age 
 df_age_avg.insert(2, 'age', round((pd.Timestamp.today() - df_age_avg["birthdate"]).dt.days / 365.25), allow_duplicates=False)
 # Eliminate wrong ages, under 16 and over 100 years
